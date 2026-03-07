@@ -2,8 +2,15 @@
 
 A simple and extensible **Turing Machine simulator written in Python**, designed for learning, experimentation, and educational purposes.
 
-This project allows users to define **states, transitions, and tapes** to simulate the behavior of a **deterministic Turing Machine**, one of the fundamental models in the theory of computation.
+[![PyPI](https://img.shields.io/pypi/v/turing-py)](https://pypi.org/project/turing-py/)
+[![Python 3.12](https://img.shields.io/badge/Python-3.12-blue.svg)](https://www.python.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
+Install directly from the **Python Package Index (PyPI)**:
+
+```bash
+pip install turing-py
+````
 ---
 
 ## 📚 About
@@ -23,6 +30,24 @@ This project is intended for:
 * Theory of Computation courses
 * Developers interested in computational models
 * Educational demonstrations
+
+---
+
+## 📦 Installation
+
+Install using **pip**:
+
+```bash
+pip install turing-py
+```
+
+Or install from source:
+
+```bash
+git clone https://github.com/ericshantos/turing-py.git
+cd turing-py
+pip install .
+```
 
 ---
 
@@ -49,7 +74,7 @@ turing-py/
 ├── .gitignore
 │
 ├── src/
-    └── pytm/
+    └── tmpy/
         ├── __init__.py
         │
         ├── machine/
@@ -146,5 +171,3 @@ This project is licensed under the **MIT License**.
 ## 👨‍💻 Author
 
 Developed by **Eric Santos**.
-
----
