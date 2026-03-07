@@ -1,0 +1,19 @@
+[project]
+name="turing-py"
+version="0.1.1"
+description = "Education Turing Machine simulator in Python"
+readme = "README.md"
+requires-python = ">=3.10"
+
+authors = [
+  { name = "Eric Santos", email = "ericshantos13@gmail.com" }
+]
+
+dependencies = []
+
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project.urls]
+"Homepage" = "https://github.com/ericshantos/turing-py"
