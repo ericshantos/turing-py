@@ -1,3 +1,5 @@
+[🇧🇷] [Lê em português](README.pt.md)
+
 # Turing-py
 
 A simple and extensible **Turing Machine simulator written in Python**, designed for learning, experimentation, and educational purposes.
