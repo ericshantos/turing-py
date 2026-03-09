@@ -1,5 +1,6 @@
 from .transition import TransitionFunction
 from .transition import Transition
+from .transition import Direction
 
 from .alphabet import Alphabet
 from .alphabet import TapeAlphabet
@@ -18,4 +19,5 @@ __all__ = [
     "TuringMachine",
     "States",
     "Tape",
+    "Direction",
 ]
