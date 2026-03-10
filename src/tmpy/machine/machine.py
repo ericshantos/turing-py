@@ -94,3 +94,4 @@ class TuringMachine:
         tape = "".join(str(s) for s in self.tape)
 
         return tape.rstrip(str(self.blank))
+    
