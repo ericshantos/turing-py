@@ -4,7 +4,7 @@
 Turing Machine implementation.
 """
 
-from ..alphabet import Alphabet, Symbol, TapeAlphabet
+from ..alphabet import Alphabet, TapeAlphabet
 from ..exception import MaxStepsExceededError
 from ..transition import TransitionFunction
 from .states import States
@@ -12,19 +12,11 @@ from .tape import Tape
 
 
 class TuringMachine:
-    def __init__(
-        self,
-        states: States,
-        alphabet: Alphabet,
-        tape_alphabet: TapeAlphabet,
-        delta: TransitionFunction,
-        blank: Symbol,
-    ):
+    def __init__(self, states: States, alphabet: Alphabet, tape_alphabet: TapeAlphabet, delta: TransitionFunction):
         self.states = states
         self.alphabet = alphabet
         self.tape_alphabet = tape_alphabet
         self.delta = delta
-        self.blank = blank
 
         self.head: int = 0
 
@@ -53,7 +45,7 @@ class TuringMachine:
 
     def _load_tape(self, input: str) -> None:
         alphabet = self.alphabet | self.tape_alphabet
-        self.tape = Tape(input, alphabet, self.blank)
+        self.tape = Tape(input, alphabet, self.tape_alphabet.blank)
         self.head = 0
 
     def _step(self) -> bool:
@@ -89,4 +81,4 @@ class TuringMachine:
 
         tape = "".join(str(s) for s in self.tape)
 
-        return tape.rstrip(str(self.blank))
+        return tape.rstrip(str(self.tape_alphabet.blank))

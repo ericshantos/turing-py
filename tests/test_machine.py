@@ -22,7 +22,7 @@ def states():
 def alphabets():
     return (
         Alphabet(Symbol("0"), Symbol("1")),
-        TapeAlphabet(Symbol("B"), Symbol("0"), Symbol("1"), Symbol("x"), Symbol("B")),
+        TapeAlphabet(Symbol("B"), Symbol("0"), Symbol("1"), Symbol("x")),
     )
 
 
@@ -47,13 +47,7 @@ def tm(states, alphabets, delta, transition):
 
     delta.add(*transition)
 
-    return TuringMachine(
-        states=states,
-        alphabet=alphabet,
-        tape_alphabet=tape_alphabet,
-        delta=delta,
-        blank=Symbol("B"),
-    )
+    return TuringMachine(states=states, alphabet=alphabet, tape_alphabet=tape_alphabet, delta=delta)
 
 
 def test_tm_run(tm):

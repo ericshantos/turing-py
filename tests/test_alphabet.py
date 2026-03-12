@@ -9,8 +9,18 @@ from tmpy import (
 )
 
 
+@pytest.fixture(autouse=True)
 def setup_function():
     Symbol._instances.clear()
+
+
+@pytest.fixture
+def tape_alphabet():
+    blank = Symbol("_")
+    a = Symbol("a")
+    b = Symbol("b")
+
+    return TapeAlphabet(blank, a, b)
 
 
 def test_alphabet_cannot_be_empty():
@@ -85,24 +95,17 @@ def test_alphabet_str():
     assert "b" in str(alphabet)
 
 
-def test_tape_alphabet():
+def test_tape_alphabet(tape_alphabet):
     a = Symbol("a")
     b = Symbol("b")
     blank = Symbol("_")
-
-    tape_alphabet = TapeAlphabet(blank, a, b, blank)
 
     assert a in tape_alphabet
     assert b in tape_alphabet
     assert blank in tape_alphabet
 
 
-def test_tape_alphabet_str():
-    a = Symbol("a")
-    b = Symbol("b")
-    blank = Symbol("_")
-
-    tape_alphabet = TapeAlphabet(blank, a, b, blank)
+def test_tape_alphabet_str(tape_alphabet):
 
     assert "Γ" in str(tape_alphabet)
     assert "a" in str(tape_alphabet)
