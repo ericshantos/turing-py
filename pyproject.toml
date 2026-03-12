@@ -1,19 +1,21 @@
 [project]
-name="turing-py"
-version="0.2.3"
+name = "turing-py"
+version = "1.0.0"
 description = "Education Turing Machine simulator in Python"
-readme = "README.md"
-requires-python = ">=3.10"
-
 authors = [
-  { name = "Eric Santos", email = "ericshantos13@gmail.com" }
+    {name = "Eric Santos",email = "ericshantos13@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
 ]
 
-dependencies = []
+[tool.poetry]
+packages = [{include = "tmpy", from = "src"}]
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.4"
 
 [build-system]
-requires = ["setuptools", "wheel"]
-build-backend = "setuptools.build_meta"
-
-[project.urls]
-"Homepage" = "https://github.com/ericshantos/turing-py"
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
