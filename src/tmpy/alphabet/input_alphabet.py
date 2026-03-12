@@ -17,6 +17,9 @@ class Alphabet:
 
         if not symbols:
             raise ValueError("Alphabet cannot be empty")
+        
+        if len(symbols) != len(set(symbols)):
+            raise ValueError("Alphabet cannot contain duplicate symbols")
 
         self._symbols: set[Symbol] = set(symbols)
 
