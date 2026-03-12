@@ -5,18 +5,16 @@
 Module for the direction of the transition.
 """
 
-
 from enum import Enum
-from collections.abc import Iterable
+
 
 class Direction(Enum):
-    RIGHT: int = 1
-    LEFT: int = -1
-    STAY: int = 0
+    RIGHT = 1
+    LEFT = -1
+    STAY = 0
 
     def move(self, head: int) -> int:
         return head + self.value
 
     def __str__(self) -> str:
         return self.name
-    

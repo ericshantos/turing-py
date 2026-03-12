@@ -1,14 +1,22 @@
-from .transition import TransitionFunction
-from .transition import Transition
-from .transition import Direction
-
-from .alphabet import Alphabet
-from .alphabet import TapeAlphabet
-from .alphabet import Symbol
-
-from .machine import TuringMachine
-from .machine import States
-from .machine import Tape
+from .alphabet import Alphabet, Symbol, TapeAlphabet
+from .exception import (
+    AlphabetError,
+    BlankSymbolError,
+    DuplicateSymbolError,
+    EmptyAlphabetError,
+    InvalidFinalStateError,
+    InvalidInitialStateError,
+    InvalidSymbolError,
+    MaxStepsExceededError,
+    StateError,
+    TapeError,
+    TapeOutOfBoundsError,
+    TransitionError,
+    TransitionNotDefinedError,
+    TuringMachineError,
+)
+from .machine import States, Tape, TuringMachine
+from .transition import Direction, Transition, TransitionFunction
 
 __all__ = [
     "TransitionFunction",
@@ -20,4 +28,19 @@ __all__ = [
     "States",
     "Tape",
     "Direction",
+    "BlankSymbolError",
+    "TuringMachineError",
+    "AlphabetError",
+    "EmptyAlphabetError",
+    "BlankSymbolError",
+    "DuplicateSymbolError",
+    "StateError",
+    "InvalidInitialStateError",
+    "InvalidFinalStateError",
+    "TapeError",
+    "TapeOutOfBoundsError",
+    "InvalidSymbolError",
+    "TransitionError",
+    "TransitionNotDefinedError",
+    "MaxStepsExceededError",
 ]

@@ -4,8 +4,8 @@
 Transition implementation for the Turing machine.
 """
 
-
 from dataclasses import dataclass
+
 from ..alphabet.symbol import Symbol
 from .direction import Direction
 

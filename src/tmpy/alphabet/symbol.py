@@ -8,18 +8,19 @@ Symbol implementation for the Turing machine.
 
 class Symbol:
 
+    value: str
+
     _instances: dict[str, "Symbol"] = {}
 
     def __new__(cls, value: str):
 
-      if value not in cls._instances:
+        if value not in cls._instances:
 
-        instance = super().__new__(cls)
-        instance.value = value
+            instance = super().__new__(cls)
+            instance.value = value
+            cls._instances[value] = instance
 
-        cls._instances[value] = instance
-
-      return cls._instances[value]
+        return cls._instances[value]
 
     def __str__(self) -> str:
         return self.value
@@ -30,6 +31,5 @@ class Symbol:
     def __hash__(self) -> int:
         return hash(self.value)
 
-    def __eq__(self, other) -> bool:
+    def __eq__(self, other: object) -> bool:
         return isinstance(other, Symbol) and self.value == other.value
-    

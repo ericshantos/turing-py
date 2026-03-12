@@ -5,8 +5,9 @@
 States implementation for the Turing machine.
 """
 
-
 from typing import Iterator
+
+from ..exception import InvalidFinalStateError, InvalidInitialStateError
 
 
 class States:
@@ -14,10 +15,10 @@ class States:
         self._states = set(states)
 
         if initial_state not in self._states:
-            raise ValueError("Initial state must belong to the state set")
+            raise InvalidInitialStateError(initial_state, "Initial state must belong to the state set")
 
         if not final_states.issubset(self._states):
-            raise ValueError("Final states must belong to the state set")
+            raise InvalidFinalStateError(final_states, "Final states must belong to the state set")
 
         self.initial_state = initial_state
         self.current_state = initial_state
@@ -29,7 +30,7 @@ class States:
     def __iter__(self) -> Iterator[str]:
         return iter(self._states)
 
-    def __len__(self)-> int:
+    def __len__(self) -> int:
         return len(self._states)
 
     def __str__(self) -> str:

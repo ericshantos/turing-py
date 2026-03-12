@@ -1,15 +1,15 @@
 """
 @author: Eric Santos <ericshantos13@gmail.com>
 
-This module defines the TransitionFunction class, which represents the 
-transition function of a finite automaton. It allows adding transitions 
+This module defines the TransitionFunction class, which represents the
+transition function of a finite automaton. It allows adding transitions
 and retrieving transitions based on the current state and input symbol.
 """
 
-
 from collections.abc import Iterable
-from .transition import Transition
+
 from ..alphabet import Symbol
+from .transition import Transition
 
 
 class TransitionFunction:
@@ -33,5 +33,5 @@ class TransitionFunction:
         return "\n".join(str(t) for t in self._transitions.values())
 
     @property
-    def conjugates(self) -> dict[tuple[str, str], Transition]:
+    def conjugates(self) -> dict[tuple[str, Symbol], Transition]:
         return self._transitions

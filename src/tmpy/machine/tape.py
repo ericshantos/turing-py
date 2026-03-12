@@ -5,10 +5,11 @@
 Tape implementation for the Turing machine.
 """
 
-
 from typing import Iterator
-from ..alphabet.symbol import Symbol
+
 from ..alphabet.input_alphabet import Alphabet
+from ..alphabet.symbol import Symbol
+from ..exception import InvalidSymbolError, TapeOutOfBoundsError
 
 
 class Tape:
@@ -23,17 +24,17 @@ class Tape:
     def __getitem__(self, idx: int) -> Symbol:
 
         if idx < 0:
-            raise IndexError("Head moved left of tape start")
+            raise TapeOutOfBoundsError("Head moved left of tape start")
 
         if idx >= len(self._tape):
             self._tape.extend([self.blank] * (idx - len(self._tape) + 1))
 
         return self._tape[idx]
 
-    def __setitem__(self, idx: int, value: str) -> None:
+    def __setitem__(self, idx: int, value: Symbol) -> None:
 
         if value not in self.alphabet:
-            raise ValueError(f"Symbol {value} not in alphabet")
+            raise InvalidSymbolError(f"Symbol {value} not in alphabet")
 
         if idx >= len(self._tape):
             self._tape.extend([self.blank] * (idx - len(self._tape) + 1))
@@ -47,8 +48,7 @@ class Tape:
         return len(self._tape)
 
     def __iter__(self) -> Iterator[Symbol]:
-      yield from self._tape
+        yield from self._tape
 
     def __repr__(self) -> str:
-      return f"Tape({self._tape})"
-    
+        return f"Tape({self._tape})"

@@ -4,20 +4,21 @@
 Turing Machine implementation.
 """
 
-
-from ..alphabet import Alphabet, TapeAlphabet, Symbol
-from .tape import Tape
+from ..alphabet import Alphabet, Symbol, TapeAlphabet
+from ..exception import MaxStepsExceededError
 from ..transition import TransitionFunction
+from .states import States
+from .tape import Tape
 
 
 class TuringMachine:
     def __init__(
         self,
-        states: str,
+        states: States,
         alphabet: Alphabet,
         tape_alphabet: TapeAlphabet,
         delta: TransitionFunction,
-        blank: Symbol
+        blank: Symbol,
     ):
         self.states = states
         self.alphabet = alphabet
@@ -27,12 +28,7 @@ class TuringMachine:
 
         self.head: int = 0
 
-    def run(
-      self,
-      input: str,
-      debug: bool = False,
-      max_steps: int = 10000
-    ) -> None:
+    def run(self, input: str, debug: bool = False, max_steps: int = 10000) -> None:
 
         steps = 0
 
@@ -41,19 +37,19 @@ class TuringMachine:
 
         while self.states.current_state not in self.states.final_states:
 
-          if steps > max_steps:
-            raise RuntimeError("Max steps exceeded")
+            if steps > max_steps:
+                raise MaxStepsExceededError("Max steps exceeded")
 
-          steps += 1
+            steps += 1
 
-          if debug:
-            print(self)
+            if debug:
+                print(self)
 
-          if not self._step():
-            break
+            if not self._step():
+                break
 
         if debug:
-          print(self)
+            print(self)
 
     def _load_tape(self, input: str) -> None:
         alphabet = self.alphabet | self.tape_alphabet
@@ -77,11 +73,11 @@ class TuringMachine:
 
     def __str__(self) -> str:
 
-      tape_str = "".join(str(s) for s in self.tape)
+        tape_str = "".join(str(s) for s in self.tape)
 
-      head_indicator = " " * self.head + "^"
+        head_indicator = " " * self.head + "^"
 
-      return f"""
+        return f"""
         State : {self.states.current_state}
         Head  : {self.head}
         Tape  : {tape_str}
@@ -94,4 +90,3 @@ class TuringMachine:
         tape = "".join(str(s) for s in self.tape)
 
         return tape.rstrip(str(self.blank))
-    

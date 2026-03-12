@@ -1,16 +1,12 @@
-from tmpy import (
-    TransitionFunction, 
-    Transition, 
-    Direction, 
-    Symbol
-)
-
 import pytest
+
+from tmpy import Direction, Symbol, Transition, TransitionFunction
 
 
 @pytest.fixture
 def tf():
     return TransitionFunction()
+
 
 @pytest.fixture
 def t():
@@ -19,8 +15,9 @@ def t():
         symbol=Symbol("0"),
         new_state="q1",
         new_symbol=Symbol("1"),
-        direction=Direction.RIGHT
+        direction=Direction.RIGHT,
     )
+
 
 def test_add_and_get_transition(tf, t):
 
@@ -30,11 +27,13 @@ def test_add_and_get_transition(tf, t):
 
     assert result == t
 
+
 def test_transition_not_found(tf):
 
     result = tf("q0", Symbol("1"))
 
     assert result is None
+
 
 def test_add_multiple_transitions(tf):
 
@@ -46,6 +45,7 @@ def test_add_multiple_transitions(tf):
     assert tf("q0", Symbol("0")) == t1
     assert tf("q1", Symbol("1")) == t2
 
+
 def test_add_iterable(tf):
 
     t1 = Transition("q0", Symbol("0"), "q1", Symbol("1"), Direction.RIGHT)
@@ -56,6 +56,7 @@ def test_add_iterable(tf):
     assert tf("q0", Symbol("0")) == t1
     assert tf("q1", Symbol("1")) == t2
 
+
 def test_str_output(tf, t):
 
     tf.add(t)
@@ -63,6 +64,7 @@ def test_str_output(tf, t):
     result = str(tf)
 
     assert str(t) in result
+
 
 def test_conjugates_property(tf, t):
 
@@ -72,4 +74,3 @@ def test_conjugates_property(tf, t):
 
     assert ("q0", Symbol("0")) in conjugates
     assert conjugates[("q0", Symbol("0"))] == t
-    

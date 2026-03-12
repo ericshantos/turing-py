@@ -1,5 +1,5 @@
 from .input_alphabet import Alphabet
-from .tape_alphabet import TapeAlphabet
 from .symbol import Symbol
+from .tape_alphabet import TapeAlphabet
 
 __all__ = ["Alphabet", "TapeAlphabet", "Symbol"]

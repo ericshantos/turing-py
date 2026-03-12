@@ -1,17 +1,17 @@
 import pytest
 
-from tmpy import Tape
-from tmpy import Symbol
-from tmpy import Alphabet
+from tmpy import Alphabet, InvalidSymbolError, Symbol, Tape, TapeOutOfBoundsError
 
 
 @pytest.fixture
 def alphabet():
     return Alphabet(Symbol("0"), Symbol("1"), Symbol("_"))
 
+
 @pytest.fixture
 def blank():
     return Symbol("_")
+
 
 @pytest.fixture
 def tape(alphabet, blank):
@@ -35,7 +35,7 @@ def test_getitem_expand_tape(tape):
 
 
 def test_getitem_negative_index(tape):
-    with pytest.raises(IndexError):
+    with pytest.raises(TapeOutOfBoundsError):
         tape[-1]
 
 
@@ -45,7 +45,7 @@ def test_setitem_valid_symbol(tape):
 
 
 def test_setitem_invalid_symbol(tape):
-    with pytest.raises(ValueError):
+    with pytest.raises(InvalidSymbolError):
         tape[0] = "X"
 
 

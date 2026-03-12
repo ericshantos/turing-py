@@ -1,8 +1,8 @@
 from dataclasses import FrozenInstanceError
-from tmpy import Transition, Symbol, Direction
-
 
 import pytest
+
+from tmpy import Direction, Symbol, Transition
 
 
 @pytest.fixture
@@ -12,8 +12,9 @@ def t():
         symbol=Symbol("0"),
         new_state="q1",
         new_symbol=Symbol("1"),
-        direction=Direction.RIGHT
+        direction=Direction.RIGHT,
     )
+
 
 def test_transition_creation(t):
 
@@ -23,12 +24,6 @@ def test_transition_creation(t):
     assert t.new_symbol == Symbol("1")
     assert t.direction == Direction.RIGHT
 
-def test_transition_equality(t):
-
-    t1 = Transition("q0", Symbol("0"), "q1", Symbol("1"), Direction.RIGHT)
-    t2 = Transition("q0", Symbol("0"), "q1", Symbol("1"), Direction.RIGHT)
-
-    assert t1 == t2
 
 def test_transition_is_immutable(t):
 
@@ -43,14 +38,16 @@ def test_transition_str(t):
     assert "q0" in result
     assert "q1" in result
 
+
 def test_transition_str_exact(t):
-  
+
     assert t.state == "q0"
     assert t.symbol == Symbol("0")
     assert t.new_state == "q1"
     assert t.new_symbol == Symbol("1")
     assert t.direction == Direction.RIGHT
-    assert str(t) == "δ(q0, 0) → (q1, 1, RIGHT)" 
+    assert str(t) == "δ(q0, 0) → (q1, 1, RIGHT)"
+
 
 def test_transition_equality():
 
@@ -58,17 +55,3 @@ def test_transition_equality():
     t2 = Transition("q0", Symbol("0"), "q1", Symbol("1"), Direction.RIGHT)
 
     assert t1 == t2
-
-def test_transition_is_immutable(t):
-    with pytest.raises(FrozenInstanceError):
-        t.state = "q2"
-
-
-def test_transition_str(t):
-    result = str(t)
-
-    assert "q0" in result
-    assert "q1" in result
-
-def test_transition_str_exact(t):
-    assert str(t) == "δ(q0, 0) → (q1, 1, RIGHT)"

@@ -1,14 +1,11 @@
 import pytest
-from tmpy import States
+
+from tmpy import InvalidFinalStateError, InvalidInitialStateError, States
 
 
 @pytest.fixture
 def states():
-    return States(
-        "q0", "q1", "q2",
-        initial_state="q0",
-        final_states={"q2"}
-    )
+    return States("q0", "q1", "q2", initial_state="q0", final_states={"q2"})
 
 
 def test_states_creation(states):
@@ -36,21 +33,13 @@ def test_states_iteration(states):
 
 
 def test_invalid_initial_state():
-    with pytest.raises(ValueError):
-        States(
-            "q0", "q1",
-            initial_state="q2",
-            final_states={"q1"}
-        )
+    with pytest.raises(InvalidInitialStateError):
+        States("q0", "q1", initial_state="q2", final_states={"q1"})
 
 
 def test_invalid_final_states():
-    with pytest.raises(ValueError):
-        States(
-            "q0", "q1",
-            initial_state="q0",
-            final_states={"q2"}
-        )
+    with pytest.raises(InvalidFinalStateError):
+        States("q0", "q1", initial_state="q0", final_states={"q2"})
 
 
 def test_str(states):
