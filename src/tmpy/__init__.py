@@ -1,4 +1,13 @@
 from .alphabet import Alphabet, Symbol, TapeAlphabet
+from .dsl import (
+    Lexer,
+    MachineLoader,
+    MachineNode,
+    Parser,
+    Token,
+    TokenType,
+    TransitionNode,
+)
 from .exception import (
     AlphabetError,
     BlankSymbolError,
@@ -28,6 +37,13 @@ __all__ = [
     "States",
     "Tape",
     "Direction",
+    "MachineNode",
+    "TransitionNode",
+    "Lexer",
+    "MachineLoader",
+    "Parser",
+    "Token",
+    "TokenType",
     "BlankSymbolError",
     "TuringMachineError",
     "AlphabetError",
