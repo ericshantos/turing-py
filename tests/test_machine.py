@@ -27,11 +27,6 @@ def alphabets():
 
 
 @pytest.fixture
-def delta():
-    return TransitionFunction()
-
-
-@pytest.fixture
 def transition():
     return [
         Transition("q0", Symbol("0"), "q0", Symbol("x"), Direction.RIGHT),
@@ -41,11 +36,11 @@ def transition():
 
 
 @pytest.fixture
-def tm(states, alphabets, delta, transition):
+def tm(states, alphabets, transition):
 
     alphabet, tape_alphabet = alphabets
 
-    delta.add(*transition)
+    delta = TransitionFunction(*transition)
 
     return TuringMachine(states=states, alphabet=alphabet, tape_alphabet=tape_alphabet, delta=delta)
 

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 @author: Eric Santos <ericshantos13@gmail.com>
 

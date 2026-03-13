@@ -13,25 +13,23 @@ from .transition import Transition
 
 
 class TransitionFunction:
-    def __init__(self) -> None:
-        self._transitions: dict[tuple[str, Symbol], Transition] = {}
+    def __init__(self, *args: Transition) -> None:
 
-    def add(self, *transitions: Transition) -> None:
+        self._tr: dict[tuple[str, Symbol], Transition] = {}
 
-        for t in transitions:
+        for t in args:
 
             if isinstance(t, Iterable) and not isinstance(t, Transition):
                 for tr in t:
-                    self._transitions[(tr.state, tr.symbol)] = tr
+                    self._tr[(tr.state, tr.symbol)] = tr
             else:
-                self._transitions[(t.state, t.symbol)] = t
+                self._tr[(t.state, t.symbol)] = t
 
     def __call__(self, state: str, symbol: Symbol) -> Transition | None:
-        return self._transitions.get((state, symbol))
+        return self._tr.get((state, symbol))
+
+    def __contains__(self, item) -> bool:
+        return item in self._tr
 
     def __str__(self) -> str:
-        return "\n".join(str(t) for t in self._transitions.values())
-
-    @property
-    def conjugates(self) -> dict[tuple[str, Symbol], Transition]:
-        return self._transitions
+        return "\n".join(str(t) for t in self._tr.values())

@@ -4,11 +4,6 @@ from tmpy import Direction, Symbol, Transition, TransitionFunction
 
 
 @pytest.fixture
-def tf():
-    return TransitionFunction()
-
-
-@pytest.fixture
 def t():
     return Transition(
         state="q0",
@@ -19,58 +14,57 @@ def t():
     )
 
 
-def test_add_and_get_transition(tf, t):
+def test_add_and_get_transition(t):
 
-    tf.add(t)
+    tf = TransitionFunction(t)
 
     result = tf("q0", Symbol("0"))
 
     assert result == t
 
 
-def test_transition_not_found(tf):
+def test_transition_not_found():
+
+    tf = TransitionFunction()
 
     result = tf("q0", Symbol("1"))
 
     assert result is None
 
 
-def test_add_multiple_transitions(tf):
+def test_add_multiple_transitions():
 
     t1 = Transition("q0", Symbol("0"), "q1", Symbol("1"), Direction.RIGHT)
     t2 = Transition("q1", Symbol("1"), "q2", Symbol("0"), Direction.LEFT)
 
-    tf.add(t1, t2)
+    tf = TransitionFunction(t1, t2)
 
     assert tf("q0", Symbol("0")) == t1
     assert tf("q1", Symbol("1")) == t2
 
 
-def test_add_iterable(tf):
+def test_add_iterable():
 
     t1 = Transition("q0", Symbol("0"), "q1", Symbol("1"), Direction.RIGHT)
     t2 = Transition("q1", Symbol("1"), "q2", Symbol("0"), Direction.LEFT)
 
-    tf.add([t1, t2])
+    tf = TransitionFunction([t1, t2])
 
     assert tf("q0", Symbol("0")) == t1
     assert tf("q1", Symbol("1")) == t2
 
 
-def test_str_output(tf, t):
+def test_str_output(t):
 
-    tf.add(t)
+    tf = TransitionFunction(t)
 
     result = str(tf)
 
     assert str(t) in result
 
 
-def test_conjugates_property(tf, t):
+def test_contains_(t):
 
-    tf.add(t)
+    tf = TransitionFunction(t)
 
-    conjugates = tf.conjugates
-
-    assert ("q0", Symbol("0")) in conjugates
-    assert conjugates[("q0", Symbol("0"))] == t
+    assert ("q0", Symbol("0")) in tf
