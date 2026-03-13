@@ -5,6 +5,7 @@
 Loader for the Turing machine DSL.
 """
 
+from ..alphabet import Symbol
 from ..transition import Transition
 from .lexer import Lexer
 from .parser import MachineNode, Parser
@@ -48,7 +49,7 @@ class MachineLoader:
 
         for node in machine_ast.transitions:
 
-            t = Transition(node.state, node.read, node.next_state, node.write, node.move)
+            t = Transition(node.state, Symbol(node.read), node.next_state, Symbol(node.write), node.move)
 
             transitions.append(t)
 
