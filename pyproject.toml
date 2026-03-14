@@ -1,6 +1,6 @@
 [project]
 name = "turing-py"
-version = "2.2.1"
+version = "2.2.2"
 description = "Education Turing Machine simulator in Python"
 authors = [
     {name = "Eric Santos",email = "ericshantos13@gmail.com"}

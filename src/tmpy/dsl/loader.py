@@ -5,51 +5,59 @@
 Loader for the Turing machine DSL.
 """
 
+from pathlib import Path
+from typing import Iterable
+
 from ..alphabet import Symbol
 from ..transition import Transition
+from .ast import MachineNode
 from .lexer import Lexer
-from .parser import MachineNode, Parser
+from .parser import Parser
 from .token import Token
 
 
 class MachineLoader:
 
-    def load(self, path: str) -> list[Transition]:
-        text = self._read_file(path)
+    @classmethod
+    def load(cls, path: str | Path) -> Iterable[Transition]:
 
-        tokens = self._lex(text)
+        text = cls._read_file(path)
 
-        ast = self._parse(tokens)
+        tokens = cls._lex(text)
 
-        transitions = self._build_transitions(ast)
+        ast = cls._parse(tokens)
+
+        transitions = cls._build_transitions(ast)
 
         return transitions
 
-    def _read_file(self, path: str) -> str:
+    @classmethod
+    def _read_file(cls, path: str | Path) -> str:
 
         with open(path, "r") as f:
             return f.read()
 
-    def _lex(self, text: str) -> list[Token]:
+    @classmethod
+    def _lex(cls, text: str) -> list[Token]:
 
         lexer = Lexer(text)
 
         return lexer.tokenize()
 
-    def _parse(self, tokens) -> MachineNode:
+    @classmethod
+    def _parse(cls, tokens: list[Token]) -> MachineNode:
 
         parser = Parser(tokens)
 
         return parser.parse()
 
-    def _build_transitions(self, machine_ast: MachineNode) -> list[Transition]:
+    @classmethod
+    def _build_transitions(cls, ast: MachineNode) -> list[Transition]:
 
         transitions = []
 
-        for node in machine_ast.transitions:
+        for node in ast.transitions:
 
-            t = Transition(node.state, Symbol(node.read), node.next_state, Symbol(node.write), node.move)
-
-            transitions.append(t)
+            transitions.append(Transition(node.state, Symbol(node.read), node.next_state, Symbol(node.write), node.move))
 
         return transitions

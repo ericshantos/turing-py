@@ -20,8 +20,7 @@ def test_machine_loader_integration():
         f.write(machine_code)
         f.flush()
 
-        loader = MachineLoader()
-        transitions = loader.load(f.name)
+        transitions = MachineLoader.load(f.name)
 
     delta = TransitionFunction(transitions)
 
