@@ -1,13 +1,4 @@
-from .alphabet import Alphabet, Symbol, TapeAlphabet
-from .dsl import (
-    Lexer,
-    MachineLoader,
-    MachineNode,
-    Parser,
-    Token,
-    TokenType,
-    TransitionNode,
-)
+from . import alphabet, dsl, machine, transition
 from .exception import (
     AlphabetError,
     BlankSymbolError,
@@ -24,25 +15,12 @@ from .exception import (
     TransitionNotDefinedError,
     TuringMachineError,
 )
-from .machine import States, Tape, TuringMachine
-from .transition import Direction, Transition, TransitionFunction
 
 __all__ = [
-    "TransitionFunction",
-    "Transition",
-    "Alphabet",
-    "TapeAlphabet",
-    "Symbol",
-    "TuringMachine",
-    "States",
-    "Tape",
-    "Direction",
-    "MachineNode",
-    "TransitionNode",
-    "Lexer",
-    "MachineLoader",
-    "Parser",
-    "Token",
+    "alphabet",
+    "dsl",
+    "machine",
+    "transition",
     "TokenType",
     "BlankSymbolError",
     "TuringMachineError",

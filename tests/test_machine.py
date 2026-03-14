@@ -1,16 +1,9 @@
 import pytest
 
-from tmpy import (
-    Alphabet,
-    Direction,
-    MaxStepsExceededError,
-    States,
-    Symbol,
-    TapeAlphabet,
-    Transition,
-    TransitionFunction,
-    TuringMachine,
-)
+from tmpy import MaxStepsExceededError
+from tmpy.alphabet import Alphabet, Symbol, TapeAlphabet
+from tmpy.machine import States, TuringMachine
+from tmpy.transition import Direction, Transition, TransitionFunction
 
 
 @pytest.fixture

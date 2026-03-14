@@ -1,6 +1,7 @@
 import pytest
 
-from tmpy import Direction, Symbol, Transition, TransitionFunction
+from tmpy.alphabet import Symbol
+from tmpy.transition import Direction, Transition, TransitionFunction
 
 
 @pytest.fixture

@@ -1,4 +1,4 @@
-from tmpy import Symbol
+from tmpy.alphabet import Symbol
 
 
 def test_setup_symbol():

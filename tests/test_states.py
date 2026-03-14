@@ -1,6 +1,7 @@
 import pytest
 
-from tmpy import InvalidFinalStateError, InvalidInitialStateError, States
+from tmpy import InvalidFinalStateError, InvalidInitialStateError
+from tmpy.machine import States
 
 
 @pytest.fixture

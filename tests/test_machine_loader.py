@@ -1,6 +1,8 @@
 import tempfile
 
-from tmpy import MachineLoader, Symbol, TransitionFunction
+from tmpy.alphabet import Symbol
+from tmpy.dsl import MachineLoader
+from tmpy.transition import TransitionFunction
 
 
 def test_machine_loader_integration():

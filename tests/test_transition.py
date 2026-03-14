@@ -2,7 +2,8 @@ from dataclasses import FrozenInstanceError
 
 import pytest
 
-from tmpy import Direction, Symbol, Transition
+from tmpy.alphabet import Symbol
+from tmpy.transition import Direction, Transition
 
 
 @pytest.fixture

@@ -9,11 +9,12 @@ from ..alphabet import Symbol
 from ..transition import Transition
 from .lexer import Lexer
 from .parser import MachineNode, Parser
+from .token import Token
 
 
 class MachineLoader:
 
-    def load(self, path: str):
+    def load(self, path: str) -> list[Transition]:
         text = self._read_file(path)
 
         tokens = self._lex(text)
@@ -29,15 +30,13 @@ class MachineLoader:
         with open(path, "r") as f:
             return f.read()
 
-    from tmpy.dsl.lexer import Lexer
-
-    def _lex(self, text: str):
+    def _lex(self, text: str) -> list[Token]:
 
         lexer = Lexer(text)
 
         return lexer.tokenize()
 
-    def _parse(self, tokens):
+    def _parse(self, tokens) -> MachineNode:
 
         parser = Parser(tokens)
 

@@ -1,12 +1,10 @@
 import pytest
 
 from tmpy import (
-    Alphabet,
     DuplicateSymbolError,
     EmptyAlphabetError,
-    Symbol,
-    TapeAlphabet,
 )
+from tmpy.alphabet import Alphabet, Symbol, TapeAlphabet
 
 
 @pytest.fixture(autouse=True)

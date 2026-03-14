@@ -1,4 +1,4 @@
-from tmpy import Parser, Token, TokenType
+from tmpy.dsl import Parser, Token, TokenType
 
 
 def test_parse_machine():

@@ -1,4 +1,4 @@
-from tmpy import MachineNode, TransitionNode
+from tmpy.dsl import MachineNode, TransitionNode
 
 
 def test_machine_node_creation():

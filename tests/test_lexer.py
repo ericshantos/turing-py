@@ -1,4 +1,4 @@
-from tmpy import Lexer, TokenType
+from tmpy.dsl import Lexer, TokenType
 
 
 def test_machine_keyword():

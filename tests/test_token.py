@@ -1,4 +1,4 @@
-from tmpy import Token, TokenType
+from tmpy.dsl import Token, TokenType
 
 
 def test_token_creation():

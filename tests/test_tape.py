@@ -1,6 +1,8 @@
 import pytest
 
-from tmpy import Alphabet, InvalidSymbolError, Symbol, Tape, TapeOutOfBoundsError
+from tmpy import InvalidSymbolError, TapeOutOfBoundsError
+from tmpy.alphabet import Alphabet, Symbol
+from tmpy.machine import Tape
 
 
 @pytest.fixture
