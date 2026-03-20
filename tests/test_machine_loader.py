@@ -2,7 +2,6 @@ import tempfile
 
 from tmpy.alphabet import Symbol
 from tmpy.dsl import MachineLoader
-from tmpy.transition import TransitionFunction
 
 
 def test_machine_loader_integration():
@@ -20,11 +19,9 @@ def test_machine_loader_integration():
         f.write(machine_code)
         f.flush()
 
-        transitions = MachineLoader.load(f.name)
+        tm = MachineLoader.load(f.name)
 
-    delta = TransitionFunction(transitions)
-
-    result = delta("q0", Symbol("1"))
+    result = tm.delta("q0", Symbol("1"))
 
     assert result is not None
     assert result.new_state == "q1"
