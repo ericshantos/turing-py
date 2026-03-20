@@ -53,7 +53,7 @@ class MachineLoader:
     @classmethod
     def _build_alphabets(cls, symbols: set[Symbol], blank: Symbol) -> tuple[Alphabet, TapeAlphabet]:
         input_alphabet = Alphabet(*[s for s in symbols if s != blank])
-        tape_alphabet = TapeAlphabet(blank, *symbols)
+        tape_alphabet = TapeAlphabet(blank, *[s for s in symbols if s != blank])
 
         return input_alphabet, tape_alphabet
 
